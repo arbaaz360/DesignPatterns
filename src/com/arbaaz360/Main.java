@@ -15,10 +15,12 @@ public class Main {
         history.push("b");
         history.push("c");
 
-        for(var i = 0; i < history.getUrls().size(); i++){
-           var url = history.getUrls().get(i);
-           System.out.println(url);
+        var iterator = history.createIterator();
+        while(iterator.hasNext()){
+            System.out.println(iterator.current());
+            iterator.next();
         }
+
     }
 }
 

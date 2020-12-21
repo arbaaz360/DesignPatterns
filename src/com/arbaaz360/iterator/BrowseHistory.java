@@ -1,11 +1,18 @@
 package com.arbaaz360.iterator;
 
-import javax.swing.plaf.ActionMapUIResource;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class BrowseHistory {
     private List<String> urls = new ArrayList<>();
+    private List<String> getUrls(){
+        return urls;
+    }
+
+    public Iterator createIterator(){
+        return new ListIterator(this);
+    }
 
     public void push(String url){
         urls.add(url);
@@ -16,10 +23,13 @@ public class BrowseHistory {
         urls.remove(lastUrl);
         return lastUrl;
     }
-    public List<String> getUrls(){
-        return urls;
+
+    public void ForEach(){
+
     }
-    public class ListIterator implements Iterator<T>{
+
+
+    public class ListIterator implements Iterator<String>{
         private BrowseHistory history;
         private int index;
         public ListIterator(BrowseHistory history){
@@ -31,8 +41,8 @@ public class BrowseHistory {
         }
 
         @Override
-        public T current() {
-            return (T)history.urls.get(index);
+        public String current() {
+            return (String)history.urls.get(index);
         }
 
         @Override
@@ -40,5 +50,7 @@ public class BrowseHistory {
             index++;
         }
     }
+
+
 
 }
